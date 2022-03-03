@@ -2,29 +2,59 @@
 
 namespace App\Controller;
 
-use App\Utils\Cache\MyRedis;
+use App\Services\Cache\CacheInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Cache\Adapter\RedisAdapter;
+
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @property CacheInterface $redis
+ */
 class IndexController extends AbstractController
 {
+    public function __construct(CacheInterface $cache)
+    {
+        $this->redis = $cache;
+    }
+
     #[Route('/index', name: 'app_index')]
     public function index(): Response
     {
-      $redis = phpiredis_connect('127.0.0.1', 6379);
-        $a = new MyRedis();
-        dd($a);
-//        $response = phpiredis_command_bs($redis, array('DEL', 'test'));
-//
-//        $response = phpiredis_multi_command_bs($redis, array(
-//            array('SET', 'test', '1'),
-//            array('GET', 'test'),
-//        ));
-      dd($response);
+        $asd = $this->redis->set('nenad', 'peder');
+
         return $this->render('index/index.html.twig', [
             'controller_name' => 'IndexController',
         ]);
+    }
+
+
+    #[Route('/get', name: 'app_get')]
+    public function get(SessionInterface $session): Response
+    {
+        dd($this->redis->get('nenad'));
+
+        return $this->render('index/index.html.twig', [
+            'controller_name' => 'IndexController',
+        ]);
+    }
+
+    #[Route('/show', name: 'app_show')]
+    public function show()
+    {
+        return $this->render('index/show.html.twig', [
+            'controller_name' => 'IndexController',
+            'links' => [
+                'store' => $this->generateUrl('store')
+            ]
+        ]);
+    }
+
+    #[Route('/store', name: 'app_store')]
+    public function store()
+    {
+
     }
 }
