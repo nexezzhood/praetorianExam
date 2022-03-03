@@ -70,6 +70,14 @@
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/dependency-injection" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/stopwatch" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/sensio/framework-extra-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/options-resolver" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/form" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/property-info" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/polyfill-intl-icu" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/property-access" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/security-core" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/password-hasher" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/security-csrf" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

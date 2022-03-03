@@ -10,11 +10,7 @@
 
 <div class="example-wrapper">
 
-    <form action="{{ links.store }}" method="post" enctype="text/plain">
-        <label for="email">E-mail:</label><br>
-        <input type="email" name="email"><br>
-        <input type="submit" value="Send">
-    </form>
+    {{ form( form ) }}
 
 </div>
 {% endblock %}
