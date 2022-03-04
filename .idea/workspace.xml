@@ -5,13 +5,15 @@
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/praetorianExam.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/praetorianExam.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/.env" beforeDir="false" afterPath="$PROJECT_DIR$/app/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/app/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/app/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/docker-compose.override.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/docker-compose.override.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/Controller/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/Controller/IndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/Services/Cache/Cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/Services/Cache/Cache.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/app/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/index/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/index/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +113,11 @@
       <path value="$PROJECT_DIR$/app/vendor/symfony/security-core" />
       <path value="$PROJECT_DIR$/app/vendor/symfony/password-hasher" />
       <path value="$PROJECT_DIR$/app/vendor/symfony/security-csrf" />
+      <path value="$PROJECT_DIR$/app/vendor/predis/predis" />
+      <path value="$PROJECT_DIR$/app/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/app/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/app/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/app/vendor/symfony/mailer" />
     </include_path>
   </component>
   <component name="ProjectId" id="25nnqK57i3uos5BRqpR8To3rRbN" />
@@ -146,7 +153,8 @@
       <updated>1646171912266</updated>
       <workItem from="1646171915587" duration="4417000" />
       <workItem from="1646256366505" duration="8823000" />
-      <workItem from="1646319571290" duration="5425000" />
+      <workItem from="1646319571290" duration="12678000" />
+      <workItem from="1646378836784" duration="7576000" />
     </task>
     <servers />
   </component>

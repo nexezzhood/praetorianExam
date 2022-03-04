@@ -61,17 +61,17 @@ class IndexController extends AbstractController
             $formData = $form->getData();
 
             if ($form->isSubmitted() && $form->isValid()) {
-                if ($this->redis->get(crc32($formData['email']))) {
+                if ($this->redis->pop('emailList')[$formData['email']]) {
                     // handle if this email already has submitted
                     return new Response(
-                        'Your request has already been submitted at ' . $this->redis->get(crc32($formData['email']) . '_date'),
+                        'Your request has already been submitted at ' . $this->redis->pop('emailListDates')[$formData['email'] . '_date'],
                         400, array('Content-Type' => 'text/html')
                     );
                 }
 
                 // handle if it is new email
-                $this->redis->set(crc32($formData['email']), $formData['email']);
-                $this->redis->set(crc32($formData['email']) . '_date', (new \DateTime())->format('Y-m-d H:i'));
+                $this->redis->push('emailList', [$formData['email'] => $formData['email']]);
+                $this->redis->push('emailListDates', [$formData['email'] . '_date' => (new \DateTime())->format('Y-m-d H:i')]);
 
                 return new Response(
                     'Your request has been added at ' . (new \DateTime())->format('Y-m-d H:i'),

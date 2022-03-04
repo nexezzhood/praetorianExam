@@ -1,6 +1,12 @@
 version: '3.8'
 
 services:
+ mailhog:
+  image: mailhog/mailhog
+  container_name: 'mailhog'
+  ports:
+   - "1025:1025"
+   - "8025:8025"
  database:
   container_name: mysql8
   image: mysql:8.0
@@ -10,9 +16,6 @@ services:
    MYSQL_ROOT_PASSWORD: root
    MYSQL_DATABASE: test_db
    MTSQL_PASSWORD: root
-   REDIS_HOST: cache
-   REDIS_PORT: 6379
-   REDIS_PASSWORD: eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
   ports:
    - 6033:3306
  cache:
@@ -20,7 +23,11 @@ services:
   restart: always
   ports:
    - 6379:6379
-  command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81   
+  command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81 
+  environment:
+   REDIS_HOST: cache
+   REDIS_PORT: 6379
+   REDIS_PASSWORD: eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81  
   volumes:
    - cache:/data
  php:

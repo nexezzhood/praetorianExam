@@ -78,6 +78,11 @@
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/security-core" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/password-hasher" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/security-csrf" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/predis/predis" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/mime" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/polyfill-intl-idn" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/egulias/email-validator" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/mailer" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
