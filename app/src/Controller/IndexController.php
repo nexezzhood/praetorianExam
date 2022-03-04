@@ -83,4 +83,33 @@ class IndexController extends AbstractController
 
         throw new HttpException(405, 'Method not allowed');
     }
+
+    public function encryptPayload(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+            $data = json_decode($request->getContent(), true);
+
+            $emailFromRedis = $this->redis->get('emailList');
+
+            if (isset($data['email']) && in_array($data['email'], $emailFromRedis)) {
+                $publicKeyFromRedis = $this->redis->get('publicKey_' . $data['email']);
+
+                if ($publicKeyFromRedis) {
+                    return new Response(
+                        'encrypted payload',
+                        200,
+                        array('Content-Type' => 'text/html')
+                    );
+                }
+            }
+
+            return new Response(
+                'no key was generated for this email',
+                400,
+                array('Content-Type' => 'text/html')
+            );
+        }
+
+        throw new HttpException(405, 'Method not allowed');
+    }
 }

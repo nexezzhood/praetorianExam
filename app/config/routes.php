@@ -9,4 +9,8 @@ return function (RoutingConfigurator $routes) {
     $routes->add('store', '/store')
         ->controller([\App\Controller\IndexController::class, 'store'])
         ->methods(['POST']);
+
+    $routes->add('encryptPayload', '/encrypt-payload')
+        ->controller([\App\Controller\IndexController::class, 'encryptPayload'])
+        ->methods(['POST']);
 };
