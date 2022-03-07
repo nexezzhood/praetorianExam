@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Entity\Request;
+use App\Entity\Response;
 use App\Event\LogsEvent;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -20,20 +21,30 @@ class LogsService
 
     public function log(array $data): array
     {
-        if ($data['operation_type'] === 'update') {
-            $request = $this->doctrine->getRepository(Request::class)->findOneBy(
-                ['ip_address' => $data['entity']['ip_address']]
-            );
+        if ($data['method'] === 'request') {
+            if ($data['operation_type'] === 'update') {
+                $entity = $this->doctrine->getRepository(Request::class)->findOneBy(
+                    ['ip_address' => $data['entity']['ip_address']]
+                );
+            } else {
+                $entity = new Request();
+            }
         } else {
-            $request = new Request();
+            if ($data['operation_type'] === 'update') {
+                $entity = $this->doctrine->getRepository(Response::class)->findOneBy(
+                    ['ip_address' => $data['entity']['ip_address']]
+                );
+            } else {
+                $entity = new Response();
+            }
         }
 
         $entityManager = $this->doctrine->getManager();
 
-        $request->setIpAddress($data['entity']['ip_address']);
-        $request->setLastUpdate($data['entity']['last_update']);
-        $request->setCachedOperations($data['entity']['cached_operations']);
-        $entityManager->persist($request);
+        $entity->setIpAddress($data['entity']['ip_address']);
+        $entity->setLastUpdate($data['entity']['last_update']);
+        $entity->setCachedOperations($data['entity']['cached_operations']);
+        $entityManager->persist($entity);
 
         $entityManager->flush();
 

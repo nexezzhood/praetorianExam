@@ -15,6 +15,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Request as RequestEntity;
 use Symfony\Component\HttpFoundation\Response;
+use App\Entity\Response as ResponseEntity;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -62,6 +63,12 @@ class IndexController extends AbstractController
                 $ip = $_SERVER['REMOTE_ADDR'];
             }
 
+            $preRequest = $doctrine->getRepository(RequestEntity::class)->findOneBy(
+                ['ip_address' => $ip]
+            );
+
+            $this->subscriber($preRequest, $logsService, $ip, 'request');
+
             $form = $this->createForm(SimpleForm::class, [], [
                 'action' => $this->generateUrl("store"),
                 'method' => 'POST',
@@ -84,31 +91,11 @@ class IndexController extends AbstractController
                 $this->redis->set('emailList', [$formData['email'] => $formData['email']]);
                 $this->redis->set('emailListDates', [$formData['email'] . '_date' => (new \DateTime())->format('Y-m-d H:i')]);
 
-                $preRecords = $doctrine->getRepository(RequestEntity::class)->findOneBy(
+                $preResponse = $doctrine->getRepository(ResponseEntity::class)->findOneBy(
                     ['ip_address' => $ip]
                 );
 
-                if ($preRecords) {
-                    $logsService->log([
-                        'method' => 'POST',
-                        'operation_type' => 'update',
-                        'entity' => [
-                            'ip_address' => $ip,
-                            'last_update' => new \DateTime(),
-                            'cached_operations' => $preRecords ? $preRecords->getCachedOperations() + 1 : 1
-                        ]
-                    ]);
-                } else {
-                    $logsService->log([
-                        'method' => 'POST',
-                        'operation_type' => 'create',
-                        'entity' => [
-                            'ip_address' => $ip,
-                            'last_update' => new \DateTime(),
-                            'cached_operations' => 1
-                        ]
-                    ]);
-                }
+                $this->subscriber($preResponse, $logsService, $ip, 'response');
 
                 return new Response(
                     'Your request has been added at ' . (new \DateTime())->format('Y-m-d H:i'),
@@ -121,9 +108,23 @@ class IndexController extends AbstractController
         throw new HttpException(405, 'Method not allowed');
     }
 
-    public function encryptPayload(Request $request)
+    public function encryptPayload(Request $request, LogsService $logsService, ManagerRegistry $doctrine)
     {
         if ($request->isMethod('POST')) {
+            if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                $ip = $_SERVER['HTTP_CLIENT_IP'];
+            } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            } else {
+                $ip = $_SERVER['REMOTE_ADDR'];
+            }
+
+            $preRequest = $doctrine->getRepository(RequestEntity::class)->findOneBy(
+                ['ip_address' => $ip]
+            );
+
+            $this->subscriber($preRequest, $logsService, $ip, 'request');
+
             $data = json_decode($request->getContent(), true);
 
             $emailFromRedis = $this->redis->get('emailList');
@@ -140,6 +141,12 @@ class IndexController extends AbstractController
                 }
             }
 
+            $preResponse = $doctrine->getRepository(ResponseEntity::class)->findOneBy(
+                ['ip_address' => $ip]
+            );
+
+            $this->subscriber($preResponse, $logsService, $ip, 'response');
+
             return new Response(
                 'no key was generated for this email',
                 400,
@@ -148,5 +155,30 @@ class IndexController extends AbstractController
         }
 
         throw new HttpException(405, 'Method not allowed');
+    }
+
+    private function subscriber($entity, $logsService, $ip, $method)
+    {
+        if ($entity) {
+            $logsService->log([
+                'method' => $method,
+                'operation_type' => 'update',
+                'entity' => [
+                    'ip_address' => $ip,
+                    'last_update' => new \DateTime(),
+                    'cached_operations' => $entity->getCachedOperations() + 1
+                ]
+            ]);
+        } else {
+            $logsService->log([
+                'method' => $method,
+                'operation_type' => 'create',
+                'entity' => [
+                    'ip_address' => $ip,
+                    'last_update' => new \DateTime(),
+                    'cached_operations' => 1
+                ]
+            ]);
+        }
     }
 }
