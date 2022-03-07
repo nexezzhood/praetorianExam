@@ -40,3 +40,13 @@ services:
     Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
         arguments:
              - '@Redis'
+
+    App\EventListener\LogsListener:
+      tags:
+        - { name: kernel.event_listener, event: kernel.request }
+        - { name: kernel.event_listener, method: onKernelRequestBlocker,  event: kernel.request }
+        - { name: kernel.event_listener, event: kernel.exception }
+
+    App\EventSubscriber\LogsSubscriber:
+      tags:
+        - { name: doctrine.event_subscriber, connection: default }
