@@ -8,7 +8,9 @@ RUN apt update \
     && docker-php-ext-configure zip \
     && docker-php-ext-install zip \
     && pecl install redis \
-    && docker-php-ext-enable redis
+    && docker-php-ext-enable redis \
+    && docker-php-ext-install mysqli pdo pdo_mysql \
+    && docker-php-ext-enable pdo_mysql
     
 WORKDIR /home/bubu/praetorianExam
 

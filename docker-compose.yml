@@ -15,7 +15,7 @@ services:
   environment:
    MYSQL_ROOT_PASSWORD: root
    MYSQL_DATABASE: test_db
-   MTSQL_PASSWORD: root
+   MYSQL_PASSWORD: pass
   ports:
    - 6033:3306
  cache:

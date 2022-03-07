@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="f5010a65-577f-4b74-9990-ca2497baf187" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/Controller/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/Controller/IndexController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/php/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +28,18 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/app/composer.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/src/Controller/IndexController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/vendor/symfony/form/FormInterface.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/src/Commands/PairGenerator.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/config/packages/framework.yaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/config/packages/doctrine_migrations.yaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/config/packages/doctrine.yaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/config/packages/mailer.yaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/.env.local" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/config/routes.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PhpDebugGeneral" xdebug_debug_port="9001">
     <xdebug_debug_ports port="9001" />
@@ -131,6 +146,7 @@
       <recent name="$PROJECT_DIR$/app/templates/index" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/EventListener" />
       <recent name="$PROJECT_DIR$/app/src/Services" />
     </key>
   </component>
@@ -145,7 +161,8 @@
       <workItem from="1646171915587" duration="4417000" />
       <workItem from="1646256366505" duration="8823000" />
       <workItem from="1646319571290" duration="12678000" />
-      <workItem from="1646378836784" duration="8973000" />
+      <workItem from="1646378836784" duration="18106000" />
+      <workItem from="1646686230693" duration="6718000" />
     </task>
     <servers />
   </component>
